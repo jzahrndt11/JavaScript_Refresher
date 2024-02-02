@@ -1,6 +1,6 @@
 console.log('Hello, world')
 
-// Declaring Variables -----------------------------------------------------------------------------
+//* Declaring Variables -----------------------------------------------------------------------------
     const SIZE = 1000 // stands for constant makes the variable immutable
     let myVar = 10 // is a mutable object and are allowed to change it
     // The difference between const and let is mutability 
@@ -8,15 +8,15 @@ console.log('Hello, world')
     var c; // DONT USE: can lead to some weird issues when writing modern javaScript
     console.log(myVar)
 
-// Primitive Types ---------------------------------------------------------------------------------
-    //Number // number includes integer, floats
-    //BigInt // used for scientific programs 
-    //String
-    //undefined // no value whatsoever, it hasn't been allocated (Try to avoid)
-    //null // has been allocated but simply means there is no value
+//* Primitive Types ---------------------------------------------------------------------------------
+    //~ Number - number includes integer, floats
+    //~ BigInt - used for scientific programs 
+    //~ String
+    //~ undefined - no value whatsoever, it hasn't been allocated (Try to avoid)
+    //~ null - has been allocated but simply means there is no value
 
-// Reference Types ----------------------------------------------------------------------------------
-    //arrays
+//* Reference Types ----------------------------------------------------------------------------------
+    //~ arrays
     const myArray = [
         0, 1, 2, 'string'
     ]
@@ -24,7 +24,7 @@ console.log('Hello, world')
     console.log(myArray[10]) // no out of bounds exception: will just display undefined
     console.log(myArray.length) // length of array
 
-    // json(JavaScript Object Notation) objects - like a dict in python 
+    //~ json(JavaScript Object Notation) objects - like a dict in python 
     const myObject = {
         myKey: "myvalue",
         'myKey*': "myvalue2",
@@ -38,7 +38,7 @@ console.log('Hello, world')
     console.log(myObject.myKey2) //if it doesn't exsists then it will display undefined
     console.log(myObject.nestedObject.myKey)
 
-// Truthy and falsy values (and a few javascript quirks) --------------------------------------------
+//* Truthy and falsy values (and a few javascript quirks) --------------------------------------------
     false
     0
     ''
@@ -48,11 +48,11 @@ console.log('Hello, world')
     console.log(Boolean(0))
 
     /*
-        try {
-            console.log(myObject.nestedObject.myKey)
-        } catch {
-            console.log('Not Found')
-        }
+        ~ try {
+        ~    console.log(myObject.nestedObject.myKey)
+        ~ } catch {
+        ~    console.log('Not Found')
+        ~ }
 
         or
 
@@ -63,8 +63,8 @@ console.log('Hello, world')
     */
 
 
-// Function declarations -----------------------------------------------------------------------------
-        // Old way
+//* Function declarations -----------------------------------------------------------------------------
+        //~ Old way
             function myFunc(myParam, myOtherParam) {
                 console.log(myParam)
                 console.log(myOtherParam)
@@ -74,7 +74,7 @@ console.log('Hello, world')
             console.log(myFunc(5))
 
 
-        // New way
+        //~ New way
             const add = (num1, num2) => {
                 return num1 + num2
             }
@@ -84,7 +84,7 @@ console.log('Hello, world')
             console.log(add2(1, 2))
 
 
-        // Higher-Ordered Function
+        //~ Higher-Ordered Function
             const superAdd = (addFunction) => {
                 const result = addFunction(1, 2)
                 return result + 4
@@ -95,7 +95,7 @@ console.log('Hello, world')
             console.log(myAddFunction())
 
 
-// Comparing Value -----------------------------------------------------------------------------------
+//* Comparing Value -----------------------------------------------------------------------------------
         // Comparing only value - Ingnores type (==)
             if (1 == 1) {
                 console.log('Yay') // True
@@ -113,7 +113,7 @@ console.log('Hello, world')
         // Everywhere you do comparisons, use 3 equal signs(===) 
         
 
-// Ternaries -----------------------------------------------------------------------------------------
+//* Ternaries -----------------------------------------------------------------------------------------
     /*
         - Shorthand for an if-else statement
     */
@@ -143,7 +143,7 @@ console.log('Hello, world')
         console.log(message)
 
 
-// Spread Operator (...) ------------------------------------------------------------------------------------
+//* Spread Operator (...) ------------------------------------------------------------------------------------
     /*
         You would use the spread operator to copy all the values that are in an 
         array or an object
