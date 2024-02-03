@@ -76,15 +76,14 @@
                 },
                 {
                     name: 'Nate',
-                    title: 'Intern',
+                    title: 'Professor',
                     salary: 100000,
                     department: ['Computer', 'Sci']
                 }
             ]
 
-            const getTitle = (employee) => {
-                return employee.title
-            }
+            const getTitle = (employee) => employee.title
+            
 
             const titles = employees.map(getTitle)
             console.log(titles)
@@ -99,27 +98,107 @@
 
 
     //* filter ---------------------------------------------------------------------------------------
+        /*
+         ?  filter:
+         ?      If results of input function is true:
+         ?          it will include it it in the final array
+         ?      If it is false:
+         ?          it will not include it
+        */
 
+         const isChair = (employee) => {
+            return employee.title === 'Chair'
+         }
 
+         const getName = (employee) => employee.name
+
+         const chairs = employees.filter(isChair)
+         const chairName = employees.filter(isChair).map(getName)
+         console.log(chairs)
+         console.log(chairName)
 
     //* find -----------------------------------------------------------------------------------------
 
+        /*
+         ?  find: 
+         ?      - will always return either one item or 
+         ?          it will return undefinded if it can't find anything
+        */
 
+         const isProfessor = (employee) => {
+            return employee.title === 'Professor'
+         }
+
+        /*
+         ~  Since there is 2 professors in array, the order matters. The first
+         ~      one will pass the test. Therefore, that is the only one its going 
+         ~      to return.
+        */
+         const aProfessor = employees.find(isProfessor)
+         console.log(aProfessor)
 
     //* findIndex ------------------------------------------------------------------------------------
-
-
+         /*
+         ?  findIndex: 
+         ?      - Is similar to find except instead of returning the actual value, it
+         ?          returns the index of the value that is found
+        */
+        
+        const bProfessor = employees.findIndex(isProfessor)
+        console.log(bProfessor) //! -1 if false; if true it will return the index
 
     //* some -----------------------------------------------------------------------------------------
+         /*
+         ?  some and every:
+         ?      - In both of them, they are going to take functions that return a Boolean,
+         ?          just like filter and find
+         ?  some:
+         ?      - If at least one of them is true, it will return true 
+         ?      - If all of them are false, it will return false        
+         */
 
+         const nums1 = [ 1, 3, 5, 7 ]
+         const nums2 = [ 2, 4, 6, 8 ]
+         const nums3 = [ 1, 4, 5, 8 ]
 
+         const isOdd = (number) => {
+            return number % 2 !== 0
+         }
+
+         const hasOddNumber = nums1.some(isOdd)
+         console.log(hasOddNumber) //~ return true because all odd
+
+         const hasOddNumber2 = nums2.some(isOdd)
+         console.log(hasOddNumber2) //~ return false because all even
+
+         const hasOddNumber3 = nums3.some(isOdd)
+         console.log(hasOddNumber3) //~ return true because at least one is odd
 
     //* every ----------------------------------------------------------------------------------------
+        /*
+         ?  every:
+         ?      - If all of them are true, it will return true 
+         ?      - If one of them is false, it will return false
+        */
 
+         const isOddNumber = nums1.every(isOdd)
+         console.log(isOddNumber) //~ return true because all odd
+
+         const isOddNumber2 = nums2.every(isOdd)
+         console.log(isOddNumber2) //~ return false because all even
+
+         const isOddNumber3 = nums3.every(isOdd)
+         console.log(isOddNumber3) //~ return false because at least one is odd
 
 
     //* sort -----------------------------------------------------------------------------------------
-
-
+         /*
+         ?  sort:
+         ?      - we don't have to write our own sort functions
+         ?      - sort by itself without a parameter will just by default infer what
+         ?          the type is and sort it out
+        */
+         
+         const letters = []
 
     //* reduce ---------------------------------------------------------------------------------------
