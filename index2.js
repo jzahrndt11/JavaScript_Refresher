@@ -1,6 +1,6 @@
 //! CS4011: Week 2
 
-//? Higher Order Functions: Map ------------------------------------------------------------------
+//? Higher Order Functions: Map -------------------------------------------------------------------------------------------------------
     
     //* for ------------------------------------------------------------------------------------------
         const numbers = [ 2, 4, 5, 7, 1, 4, 52, 26 ]
@@ -66,19 +66,29 @@
                     name: 'Mike',
                     title: 'Professor',
                     salary: 1000000,
-                    department: ['Comp Science']
+                    department: ['Comp Science'],
+                    yearsExperience: 7
                 }, 
                 {
                     name: 'Jer',
                     title: 'Chair',
                     salary: 2000000,
-                    department: ['Computer Science']
+                    department: ['Computer Science'],
+                    yearsExperience: 5
                 },
                 {
                     name: 'Nate',
                     title: 'Professor',
                     salary: 100000,
-                    department: ['Computer', 'Sci']
+                    department: ['Computer', 'Sci'],
+                    yearsExperience: 10
+                },
+                {
+                    name: 'Trump',
+                    title: 'President',
+                    salary: 1000000000000,
+                    department: ['Computer', 'Sci'],
+                    yearsExperience: 4
                 }
             ]
 
@@ -199,10 +209,87 @@
          ?          the type is and sort it out
         */
          
-         const letters = []
+         const letters = [ 'a', 'z', 'e', 'f' ]
+         const nums = [ 7, 3, 5, 1 ]
+
+         //~ sort numbers
+         const sortedNums = nums.sort()
+         console.log(sortedNums)
+
+         //~ reverse sort
+         const reverseSort = nums.sort((a, b) => {
+            return b - a
+         })
+         console.log(reverseSort)
+
+         //~ sort letters
+         const sortedLetters = letters.sort()
+         console.log(sortedLetters)
+
+
+         const sortByTitle = (employeeA, employeeB) => {
+            const titleA = employeeA.title
+            const titleB = employeeB.title
+
+            const valueMap = {
+                President: 5,
+                Chair: 2,
+                Professor: 1
+            }
+
+            const valueDiff = valueMap[titleB] - valueMap[titleA]
+
+            if (valueDiff === 0) {
+                return employeeB.yearsExperience - employeeA.yearsExperience
+            }
+
+            return valueDiff
+         }
+
+         const employeeSortedByTitle = employees.sort(sortByTitle)
+         console.log(employeeSortedByTitle)
+
 
     //* reduce ---------------------------------------------------------------------------------------
+        
+        /*
+         ?  reduce:
+         ?      - Takes an array of values and reduce it to some single sum
+         ?      - 
+        */
+
+         const numbers2 = [ 1, 2, 3, 4 ]
+
+         const addToAcc = (acc, current) => {
+            return acc + current
+         }
+
+         const sum = numbers2.reduce(addToAcc, 0)
+         console.log(sum) //~ (0 + 1) = 1 => (1 + 2) = 3 => (3 + 3) = 6 => (6 + 4) = 10
+
+        
+         
 
 
 
-    
+    //* Higher Order Functions Documentation
+
+    /*
+        Map: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/MapLinks 
+
+        Filter: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filterLinks 
+
+        Find: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findLinks 
+
+        FindIndex: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndexLinks 
+
+        Some: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/someLinks 
+
+        Every: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/everyLinks 
+
+        Sort: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sortLinks 
+
+        Reduce  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduceLinks 
+
+    */
+
