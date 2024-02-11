@@ -1,4 +1,5 @@
 //! CS4011: Week 2
+const uniq = require('lodash/uniq')
 
 //? Higher Order Functions: Map -------------------------------------------------------------------------------------------------------
     
@@ -345,10 +346,35 @@
 
         //! Example 2: How much profit potential do we have for each brand?
 
+            //? Create a list of each brand name using lodash uniq must include dependency
+                const brands = uniq(inventory.map(item => item.brand))
+                console.log(brands)
+
+
+            //? If you are only using one input paremater you don't need the parentheses and can write function like this
+                const brandProfitPotential = brands.map(brand => {
+                    //^ Filter out anything thats not the current brand we are looking at
+                    const itemsOfBrand = inventory.filter(item => item.brand === brand)
+                    //console.log(brand, itemsOfBrand)
+                    const totalProfitPotentialForBrand = itemsOfBrand.reduce(getPotentialProfit, 0)
+                    return totalProfitPotentialForBrand
+                })
+                console.log(brandProfitPotential)
+
+                //? The acc will be an object instead of a single value
+                const brandProfitMap = brands.reduce((acc, brand) => {
+                    const itemsOfBrand = inventory.filter(item => item.brand === brand)
+                    const totalProfitPotentialForBrand = itemsOfBrand.reduce(getPotentialProfit, 0)
+ 
+                    return {
+                        ...acc, // Spread out the accumaltor the object that keeps getting added to
+                        [brand]: totalProfitPotentialForBrand // add brand and total profit potential
+                    }
+                }, {}) // {} => starting this function with an empty object
+
+                console.log(brandProfitMap)
+
             
-                const brands = inventory.map(item => item.brand)
-
-
     //* Higher Order Functions Documentation
     /*
      ?  Map: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/MapLinks 
