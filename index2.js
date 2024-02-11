@@ -254,42 +254,117 @@
         
         /*
          ?  reduce:
-         ?      - Takes an array of values and reduce it to some single sum
-         ?      - 
+         ?      - Takes an array of values and reduce it to some single value(sum)
+         ?      - So we can do things like grabbing the sime of all the parts of an array
         */
 
-         const numbers2 = [ 1, 2, 3, 4 ]
+        const numbers2 = [ 1, 2, 3, 4 ]
 
-         const addToAcc = (acc, current) => {
-            return acc + current
-         }
-
-         const sum = numbers2.reduce(addToAcc, 0)
-         console.log(sum) //~ (0 + 1) = 1 => (1 + 2) = 3 => (3 + 3) = 6 => (6 + 4) = 10
+        //! Example 1: We are going to use reduce to get the sum of all the numbers in numbers2[]
+            /*
+             ?  acc = accumulator: The accumulated value as it is going through
+             ?                  - It is going to be the last value or the return value from the last iteration
+             ?                  - Or it going to be the staring value
+             ?  current = current number it is looking at in this case either 1, 2, 3, or 4
+             ?  index = index of current number (Not worried about in this example)
+            */
+            const addToAcc = (acc, current) => {
+                return acc + current
+            }
 
         
-         
+            const sum = numbers2.reduce(addToAcc, 0)
+            console.log(sum) //~ (0 + 1) = 1 => (1 + 2) = 3 => (3 + 3) = 6 => (6 + 4) = Displays 10
 
+        
+        //! Example 2: How much profit potential do we have?
+
+            const inventory = [
+                {
+                    type: 'Montior',
+                    brand: 'Lenovo',
+                    listPrice: 1000,        //?     (listPrice - wholeSale) * stock
+                    wholesale: 400,         //!         (1000 - 400) * 5 = 3000
+                    stock: 5,
+                },
+                {
+                    type: 'Montior',
+                    brand: 'Dell',
+                    listPrice: 1200,        //!         (1200 - 700) * 3 = 1500
+                    wholesale: 700,
+                    stock: 3,
+                },
+                {
+                    type: 'iPhone 13',
+                    brand: 'Apple',
+                    listPrice: 1100,        //!         (1100 - 1000) * 14 = 1400
+                    wholesale: 1000,
+                    stock: 14,
+                },
+                {
+                    type: 'Macbook Pro',
+                    brand: 'Apple',
+                    listPrice: 3000,        //!         Added afterwards
+                    wholesale: 2800,
+                    stock: 14,
+                },
+                {
+                    type: 'Laptop',
+                    brand: 'Asus',
+                    listPrice: 2300,        //!         (2300 - 2000) * 4 = 1200
+                    wholesale: 2000,
+                    stock: 4,
+                },
+            ]                               //!         3000 + 1500 + 1400 + 1200 = Total Profit: $7100
+
+            //? Solving the Proble using reduce
+
+                //^ Setting up acc for reduce function for potential profit function
+                const getPotentialProfit = (acc, item) => {
+                    const profitPerItem = item.listPrice - item.wholesale
+                    const totalProfit = profitPerItem * item.stock
+                    return totalProfit + acc
+                }
+
+                //^ Potential profit function using reduce
+                const totalInStorePotentialProfit = inventory.reduce(getPotentialProfit, 0)
+                console.log(totalInStorePotentialProfit) //!  Total Profit: $7100 
+
+            //? Getting Profit for only Apple products
+
+                const isApple = (inventory) => {
+                    return inventory.brand === 'Apple'
+                }
+
+                const appleOnlyInStoreProfit = inventory.filter(isApple).reduce(getPotentialProfit, 0)
+                const inClassCode = inventory.filter(item => item.brand === 'Apple').reduce(getPotentialProfit, 0)
+
+                console.log(appleOnlyInStoreProfit)
+                console.log(inClassCode)
+
+
+        //! Example 2: How much profit potential do we have for each brand?
+
+            
+                const brands = inventory.map(item => item.brand)
 
 
     //* Higher Order Functions Documentation
-
     /*
-        Map: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/MapLinks 
+     ?  Map: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/MapLinks 
 
-        Filter: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filterLinks 
+     ?  Filter: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filterLinks 
 
-        Find: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findLinks 
+     ?  Find: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findLinks 
 
-        FindIndex: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndexLinks 
+     ?  FindIndex: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndexLinks 
 
-        Some: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/someLinks 
+     ?  Some: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/someLinks 
 
-        Every: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/everyLinks 
+     ?  Every: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/everyLinks 
 
-        Sort: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sortLinks 
+     ?  Sort: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sortLinks 
 
-        Reduce  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduceLinks 
-
+     ?  Reduce  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduceLinks 
     */
 
